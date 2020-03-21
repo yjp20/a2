@@ -100,7 +100,7 @@ body {
 }
 
 #client .user .set table[data-show="true"] {
-	display: block;
+	display: table;
 }
 
 #client a {
