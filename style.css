@@ -1,0 +1,158 @@
+body {
+	font-size: 12px;
+	font-family: sans-serif;
+	color: #333;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	width: 100%;
+	background-color: #f9f9f9;
+	margin: 0;
+	align-items: center;
+}
+
+.desc {
+	color: gray;
+}
+
+.desc a {
+	color: #0060a0;
+}
+
+#client {
+	display: flex;
+	flex-direction: column;
+	padding: 1em;
+	max-width: 400px;
+	margin: auto;
+}
+
+#client #search {
+	display: flex;
+	min-width: 0;
+	background-color: white;
+	padding: 1em;
+	border: 1px solid #ccc;
+}
+
+#client #search input {
+	border: 1px solid #ccc;
+	padding: 0.5em;
+}
+
+#client #search button {
+	border: 1px solid #ccc;
+	margin-left: 0.3em;
+	padding: 0.5em;
+}
+
+#client .loader {
+	margin: 1em 0;
+	align-self: center;
+}
+
+#client .error {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 1em;
+	color: darkred;
+	background-color: lightcoral;
+	padding: 1em;
+	border: 1px solid darkred;
+}
+
+#client .close:after {
+	display: inline-block;
+  content: "\00d7";
+}
+
+#client .user {
+	margin-top: 1em;
+	background-color: white;
+	padding: 1em;
+	border: 1px solid #ccc;
+}
+
+#client .user .set .name{
+	color: #0060a0;
+	display: block;
+	width: 100%;
+	background: none;
+	border: 1px solid transparent;
+	padding: 0.2em;
+}
+
+#client .user .set .name:hover {
+	border: 1px solid #ccc;
+}
+
+#client .user .set table {
+	display: none;
+	padding-bottom: 1em;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 1em;
+	width: 100%;
+}
+
+#client .user .set table td,
+#client .user .set table th {
+	padding: 0.1em 0.3em;
+}
+
+#client .user .set table[data-show="true"] {
+	display: block;
+}
+
+#client a {
+	color: #0060a0;
+}
+
+#client a.verdict-OK {
+	color: #4F8D00;
+}
+
+#client a.verdict-WRONG {
+	color: #AD1C00;
+}
+
+/* LOADER */
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  margin: 4px;
+  border-style: solid;
+  border-width: 4px;
+  border-radius: 50%;
+  border-color: #ccc transparent transparent transparent;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
