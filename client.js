@@ -11,6 +11,7 @@ $n = function (s) {
 }
 
 const client = $s("#client")
+let user
 
 function viewSearchPage() {
 	let search = $n("div")
@@ -27,10 +28,12 @@ function viewSearchPage() {
 			client.appendChild(viewError("Must specify handle"))
 			return
 		}
+		if (user) client.removeChild(user)
 		client.appendChild(loader)
 		data = await getSolveData(input.value)
+		user = viewUserContent(data)
 		client.removeChild(loader)
-		client.appendChild(viewUserContent(data))
+		client.appendChild(user)
 	}
 
 	input.setAttribute("placeholder", "Codeforces ID")
