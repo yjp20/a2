@@ -11,30 +11,47 @@ $n = function (s) {
 }
 
 const client = $s("#client")
+let search = $n("div")
+let input = $n("input")
+let submit = $n("button")
 let user
 
-function viewSearchPage() {
-	let search = $n("div")
-	let input = $n("input")
-	let submit = $n("button")
+window.onpopstate = function (e) {
+	input.value = e.state
+	displayUser(true)
+}
 
+async function displayUser(skiphist) {
+	let loader = viewLoading()
+
+	if (!input.value) {
+		client.appendChild(viewError("Must specify handle"))
+		return
+	}
+
+	if (user) client.removeChild(user)
+	client.appendChild(loader)
+
+	try {
+		data = await getSolveData(input.value)
+
+		// Handle history
+		if (!skiphist) history.pushState(input.value, "", "?handle=" + encodeURIComponent(input.value))
+		document.title = input.value + " | a2oj ladder"
+
+		// Display data
+		user = viewUserContent(data)
+		client.appendChild(user)
+	} catch(e) {
+		if (e.name == 'TypeError') client.appendChild(viewError("Non-existent handle or other network error"))
+	}
+	client.removeChild(loader)
+}
+
+function viewSearchPage() {
 	search.appendChild(input)
 	search.appendChild(submit)
 	search.id = "search"
-
-	async function displayUser() {
-		let loader = viewLoading()
-		if (!input.value) {
-			client.appendChild(viewError("Must specify handle"))
-			return
-		}
-		if (user) client.removeChild(user)
-		client.appendChild(loader)
-		data = await getSolveData(input.value)
-		user = viewUserContent(data)
-		client.removeChild(loader)
-		client.appendChild(user)
-	}
 
 	input.setAttribute("placeholder", "Codeforces ID")
 	input.onkeydown = async function (e) {
@@ -42,8 +59,8 @@ function viewSearchPage() {
 			displayUser()
 		}
 	}
-	submit.innerText = "Check"
 	submit.onclick = displayUser
+	submit.innerText = "Check"
 
 	return search
 }
