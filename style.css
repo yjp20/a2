@@ -107,11 +107,11 @@ body {
 	color: #0060a0;
 }
 
-#client a.verdict-OK {
+#client .verdict-OK {
 	color: #4F8D00;
 }
 
-#client a.verdict-WRONG {
+#client .verdict-WRONG {
 	color: #AD1C00;
 }
 

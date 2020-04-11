@@ -85,7 +85,8 @@ function viewUserContent(data) {
 		header.appendChild(header_diff)
 		table.appendChild(header)
 
-		let attempted = 0
+		let ctSolved = 0
+		let ctWrong = 0
 		sets[setname].forEach((e) => {
 			let problem = $n("tr")
 			let link_cell = $n("td")
@@ -99,7 +100,11 @@ function viewUserContent(data) {
 
 			if (index in solved) {
 				link.classList.add("verdict-"+solved[index])
-				attempted ++
+
+				if (solved[index] == "OK")
+					ctSolved ++
+				else
+					ctWrong ++
 			}
 
 			link_cell.appendChild(link)
@@ -108,7 +113,11 @@ function viewUserContent(data) {
 			table.appendChild(problem)
 		})
 
-		name.innerHTML = "<b>"+ setname + "</b> - " + attempted
+		name.innerHTML = `<b> ${setname} </b`
+		if (ctSolved || ctWrong) name.innerHTML += ` - `
+		if (ctSolved) name.innerHTML += `<span class="verdict-OK">${ctSolved}</span>`
+		if (ctSolved && ctWrong) name.innerHTML += ` / `
+		if (ctWrong) name.innerHTML += `<span class="verdict-WRONG">${ctWrong}</span>`
 		name.classList.add("name")
 		set.classList.add("set")
 		set.appendChild(name)
