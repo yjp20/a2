@@ -186,3 +186,9 @@ function getSolvedStatus(data) {
 }
 
 client.appendChild(viewSearchPage())
+
+let handle = new URLSearchParams(window.location.search).get("handle")
+if (handle) {
+	input.value = handle
+	displayUser(true)
+}
