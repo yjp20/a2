@@ -23,27 +23,58 @@ body {
 	display: flex;
 	flex-direction: column;
 	padding: 1em;
-	max-width: 400px;
+	width: 250px;
 	margin: auto;
+}
+
+#client.hide-solved a.problem.verdict-OK {
+	display: none!important;
+}
+
+#client .options {
+	display: flex;
+	margin-bottom: 8px;
+	justify-content: flex-end;
+}
+
+#client .options .checkbox {
+	display: flex;
+	user-select: none;
+}
+
+#client .options .checkbox input {
+	display: none;
+}
+
+#client .options .checkbox input:checked ~ .checkbox-mark::after {
+	content: "✓";
+	font-weight: bold;
+	margin-right: 2px;
+}
+
+#client .options .checkbox input:checked ~ .checkbox-text {
+	font-weight: bold;
 }
 
 #client #search {
 	display: flex;
-	min-width: 0;
-	background-color: white;
-	padding: 1em;
-	border: 1px solid #ccc;
 }
 
 #client #search input {
 	border: 1px solid #ccc;
+	flex: 1;
 	padding: 0.5em;
 }
 
 #client #search button {
 	border: 1px solid #ccc;
-	margin-left: 0.3em;
+	margin-left: 0.5em;
 	padding: 0.5em;
+	background-color: #eee;
+}
+
+#client #search button:hover {
+	background-color: #e5e5e5;
 }
 
 #client .loader {
@@ -61,58 +92,88 @@ body {
 	border: 1px solid darkred;
 }
 
-#client .close:after {
+#client .error .close:after {
 	display: inline-block;
   content: "\00d7";
 }
 
 #client .user {
-	margin-top: 1em;
-	background-color: white;
 	padding: 1em;
+	margin-top: 1em;
 	border: 1px solid #ccc;
+	background-color: white;
 }
 
-#client .user .set .name{
-	color: #0060a0;
+#client .user .set .set-name {
 	display: block;
 	width: 100%;
-	background: none;
+	padding: 2px;
 	border: 1px solid transparent;
-	padding: 0.2em;
-}
-
-#client .user .set .name:hover {
-	border: 1px solid #ccc;
-}
-
-#client .user .set table {
-	display: none;
-	padding-bottom: 1em;
-	border-bottom: 1px solid #ccc;
-	margin-bottom: 1em;
-	width: 100%;
-}
-
-#client .user .set table td,
-#client .user .set table th {
-	padding: 0.1em 0.3em;
-}
-
-#client .user .set table[data-show="true"] {
-	display: table;
-}
-
-#client a {
+	background: none;
 	color: #0060a0;
+	text-align: left;
 }
 
-#client .verdict-OK {
+#client .user .set .set-name:hover {
+	background: #1F67A320;
+}
+
+#client .user .set .set-list {
+	display: none;
+	margin-bottom: 8px;
+}
+
+#client .user .set .set-list[data-show="true"] {
+	display: block;
+}
+
+#client .user .set .set-list .set-header,
+#client .user .set .set-list .problem {
+	display: flex;
+	justify-content: space-between;
+	padding: 2px;
+}
+
+#client .set-header {
+	font-weight: bold;
+}
+
+#client a.problem {
+	color: #0060a0;
+	--hover-color: #0060a020;
+	text-decoration: none;
+}
+
+#client a.problem:hover {
+	background-color: var(--hover-color);
+}
+
+#client .verdict-OK,
+#client .problem.verdict-OK {
 	color: #4F8D00;
+	--hover-color: #4F8D0020;
 }
 
-#client .verdict-WRONG {
+#client .verdict-WRONG,
+#client .problem.verdict-WRONG {
 	color: #AD1C00;
+	--hover-color: #AD1C0020;
+}
+
+#client .problem-index {
+	display: inline-block;
+	width: 5ch;
+	font-weight: bold;
+}
+
+#client .problem-desc {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+#client .problem-diff {
+	margin-left: 0.5em;
 }
 
 /* LOADER */
