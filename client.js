@@ -25,7 +25,6 @@ window.onpopstate = function (e) {
 	$input.value = e.state
 	query(true)
 }
-
 async function query(skiphist) {
 	if (last_username != $input.value) {
 		last_username = $input.value
@@ -255,6 +254,7 @@ function viewUserContent() {
 
 			for (let problem of sets[set_name]) {
 				const index = getProblemString(problem.link)
+				if (set_name == "15xx") console.log(index)
 				const $problem = context[set_name].problems[index]
 				if (index in solved) {
 					$problem.classList.add("verdict-" + solved[index])

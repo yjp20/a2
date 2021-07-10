@@ -1608,11 +1608,6 @@ const sets = {
 			"diff": "2"
 		},
 		{
-			"link": "http://codeforces.com/problemset/problem/414/B",
-			"name": "Mashmokh and ACM",
-			"diff": "3"
-		},
-		{
 			"link": "http://codeforces.com/problemset/problem/437/C",
 			"name": "The Child and Toy",
 			"diff": "3"
